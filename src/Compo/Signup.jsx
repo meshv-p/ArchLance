@@ -24,7 +24,7 @@ export const Signup = () => {
         email: "",
         name: "",
         number: "",
-        user_role: "Architecture"
+        user_role: "A"
     })
 
     const context = useContext(UserContext)
@@ -146,8 +146,8 @@ export const Signup = () => {
                                             onChange={(e) => setSignupDetails({ ...signupDetails, [e.target.name]: e.target.value })}
 
                                         >
-                                            <FormControlLabel value="Architecture" control={<Radio />} label="Architecture" />
-                                            <FormControlLabel value="Client" control={<Radio />} label="Client" />
+                                            <FormControlLabel value="A" control={<Radio />} label="Architecture" />
+                                            <FormControlLabel value="C" control={<Radio />} label="Client" />
 
                                         </RadioGroup>
                                     </FormControl>
