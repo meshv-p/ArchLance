@@ -1,0 +1,6 @@
+.searchItem{
+    position: absolute;
+    top: 80%;
+    left: 9%;
+    z-index: 1;
+}
