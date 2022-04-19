@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ClientHomePage = ({ list }) => {
     // console.log(list, typeof list, list ?? [0])
+
     let history = useNavigate()
     function stringToColor(string) {
         let hash = 0;
@@ -77,6 +78,8 @@ export const ClientHomePage = ({ list }) => {
 
 
             <Stack direction='row' sx={{ overflowX: 'auto', border: `1px solid rgb(30 30 30)`, borderRadius: 1 }}>
+
+
 
                 {
                     list && list?.map(list => (
