@@ -89,7 +89,7 @@ export const CreateProject = () => {
                             <TextField id="outlined-basic" name='desc' onChange={e => setBlog({ ...blog, [e.target.name]: e.target.value })} label="Enter your descriptions.." variant="outlined" />
                             {/* <TextField id="outlined-basic" name='tag' onChange={e => setBlog({ ...blog, tag: e.target.value })} label="Tags" variant="outlined" /> */}
                             <Button variant="text">Cancel</Button>
-                            <Button variant="contained" onClick={handleSubmit}>Publish blog</Button>
+                            <Button variant="contained" onClick={handleSubmit}>Publish project</Button>
 
                         </Stack>
                     </Card>
