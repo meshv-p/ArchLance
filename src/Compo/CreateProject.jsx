@@ -45,9 +45,9 @@ export const CreateProject = () => {
         })
 
         let status = await res.json()
-        if (res.status === 200) {
+        if (res.status === 201) {
             setOpen(true)
-            setBlogError({ type: "success", msg: "Blog Published..." })
+            setBlogError({ type: "success", msg: "Project Published..." })
             setBlog({
                 title: "", desc: "",
                 tag: []
@@ -55,7 +55,7 @@ export const CreateProject = () => {
         }
         else {
 
-            setBlogError({ type: "error", msg: status.msg })
+            setBlogError({ type: "error", msg: "some error occured..." })
             setOpen(true)
         }
 

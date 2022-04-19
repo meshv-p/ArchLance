@@ -12,9 +12,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import blogContext from '../Context/BlogContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserContext from '../Context/UserContext';
-import { FormControl, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { FormControl, FormLabel, Radio, RadioGroup, Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 
 export const Signup = () => {
 
@@ -27,6 +28,8 @@ export const Signup = () => {
         user_role: "A"
     })
 
+    const [open, setOpen] = useState(false)
+    const [blogError, setBlogError] = useState("")
     const context = useContext(UserContext)
     let { theme, url } = context;
     const darkTheme = createTheme({
@@ -37,20 +40,47 @@ export const Signup = () => {
             },
         },
     });
+    let history = useNavigate()
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log(signupDetails)
-        let res = fetch(`${url}/api/create/user/`, {
+        let res = await fetch(`${url}/api/create/user/`, {
             method: "POST",
             body: JSON.stringify(signupDetails),
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(data => data.json()).then(d => console.log(d))
+        })
+        // .then(data => data.json()).then(d => console.log(d))
+
+        let status = await res.json()
+        if (res.status === 201) {
+            setOpen(true)
+            setBlogError({ type: "success", msg: "User Created..." })
+            setSignupDetails({
+                username: "", password: "", email: "", name: "", number: "", user_role: ""
+            })
+            history('/login')
+        }
+        else {
+
+            setBlogError({ type: "error", msg: "some error occured..." })
+            setOpen(true)
+        }
 
     }
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
     return (
         <div>
             <ThemeProvider theme={darkTheme}>
@@ -67,6 +97,13 @@ export const Signup = () => {
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlinedIcon />
                         </Avatar>
+                        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}
+                            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                            <Alert onClose={handleClose} severity={blogError?.type} sx={{ width: '100%' }}>
+                                {blogError?.msg}
+                            </Alert>
+                        </Snackbar>
+
                         <Typography component="h1" variant="h5">
                             Sign up
                         </Typography>
