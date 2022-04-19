@@ -82,7 +82,7 @@ export const CreateProject = () => {
                                 Go back
                             </Button>
                         </Typography>
-                        <Typography textAlign='center' variant='h5' sx={{ my: 2 }} color="text.secondary">Create a blog...</Typography>
+                        <Typography textAlign='center' variant='h5' sx={{ my: 2 }} color="text.secondary">Create a project...</Typography>
 
                         <Stack gap={3}>
                             <TextField id="outlined-basic" label="Title" onChange={e => setBlog({ ...blog, [e.target.name]: e.target.value })} name='name' variant="outlined" />

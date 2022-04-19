@@ -285,7 +285,7 @@ export const Navbar = () => {
                                                         <Typography sx={{ color: 'white' }}>Create project</Typography>
                                                     </Link>
                                                 </MenuItem>
-                                                <MenuItem onClick={() => { localStorage.removeItem('profile'); localStorage.removeItem('token'); setCurrentUser(null); setAnchorElUser(null) }}>
+                                                <MenuItem onClick={() => { localStorage.removeItem('profile'); localStorage.removeItem('token'); setCurrentUser(null); setAnchorElUser(null); history('/') }}>
                                                     <Typography>Logout</Typography>
                                                 </MenuItem>
 
